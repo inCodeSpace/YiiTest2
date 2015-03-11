@@ -5,17 +5,6 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
-if (!empty($_SERVER['HTTP_HOST']) && strpos($_SERVER['HTTP_HOST'], 'localdomain') === FALSE) {
-    // Parse the json file with ADDONS credentials
-    $string = file_get_contents($_ENV['CRED_FILE'], false);
-
-    if ($string == false) {
-        die('FATAL: Could not read credentials file');
-    }
-
-    $creds = json_decode($string, true);
-}
-
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
@@ -58,21 +47,9 @@ return array(
 			),
 		),
 		*/
-
-        'db'=>array(
-            'connectionString' => 'mysql:host=' . $creds["MYSQLS"]["MYSQLS_HOSTNAME"] . ';dbname=' . $creds["MYSQLS"]["MYSQLS_DATABASE"],
-            'emulatePrepare' => true,
-            'username' => $creds["MYSQLS"]["MYSQLS_USERNAME"],
-            'password' => $creds["MYSQLS"]["MYSQLS_PASSWORD"],
-            'charset' => 'utf8',
-        ),
-
-        /*
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),
-        */
-
 		// uncomment the following to use a MySQL database
 		/*
 		'db'=>array(
@@ -87,20 +64,6 @@ return array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
 		),
-
-        'log'=>array(
-            'class'=>'CLogRouter',
-            'routes'=>array(
-                array(
-                    'class'=>'CDbLogRoute',
-                    'autoCreateLogTable' => 1,
-                    'connectionID' => 'db',
-                    'levels'=>'error, warning',
-                ),
-            ),
-        ),
-
-/*
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
@@ -109,19 +72,14 @@ return array(
 					'levels'=>'error, warning',
 				),
 				// uncomment the following to show log messages on web pages
-
-//				array(
-//					'class'=>'CWebLogRoute',
-//				),
-//
+				/*
+				array(
+					'class'=>'CWebLogRoute',
+				),
+				*/
 			),
 		),
 	),
-*/
-
-        'cache'=>array(
-            'class'=>'system.caching.CApcCache',
-        ),
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
