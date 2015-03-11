@@ -88,19 +88,7 @@ return array(
 			'errorAction'=>'site/error',
 		),
 
-        'log'=>array(
-            'class'=>'CLogRouter',
-            'routes'=>array(
-                array(
-                    'class'=>'CDbLogRoute',
-                    'autoCreateLogTable' => 1,
-                    'connectionID' => 'db',
-                    'levels'=>'error, warning',
-                ),
-            ),
-        ),
 
-/*
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
@@ -110,18 +98,13 @@ return array(
 				),
 				// uncomment the following to show log messages on web pages
 
-//				array(
-//					'class'=>'CWebLogRoute',
-//				),
-//
+				array(
+					'class'=>'CWebLogRoute',
+				),
+
 			),
 		),
 	),
-*/
-
-        'cache'=>array(
-            'class'=>'system.caching.CApcCache',
-        ),
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
